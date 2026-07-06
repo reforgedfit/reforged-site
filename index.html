@@ -1,1 +1,460 @@
-coming soon
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reforged — Emerge Reforged</title>
+<meta name="description" content="I lost 146 pounds and taught myself to run and lift. Reforged is for anyone who's never felt like they belonged in a gym. — Justin">
+
+<!-- Open Graph / social preview -->
+<meta property="og:title" content="Reforged — Emerge Reforged">
+<meta property="og:description" content="146 pounds down. Still going. Honest training and running for people starting from the bottom.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reforgedfit.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --forge: #1A1A1A;
+    --forge-deep: #121212;
+    --ember: #D4590A;
+    --ember-bright: #F07A1E;
+    --light-ember: #F6DCC7;
+    --offwhite: #F2EDE8;
+    --muted: #9A938C;
+    --hairline: rgba(242, 237, 232, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--forge);
+    color: var(--offwhite);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .wrap { width: 100%; max-width: 920px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Eyebrow labels ---------- */
+  .eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: var(--ember);
+    display: inline-block;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    padding: 26px 0;
+  }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .wordmark {
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.16em;
+    color: var(--offwhite);
+    text-decoration: none;
+  }
+  .wordmark .dot { color: var(--ember); }
+  .topbar .nav-note {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 120px 0 80px;
+  }
+  /* ember rising from bottom-left, like a forge fire */
+  .hero::before {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 80vw;
+    height: 90vh;
+    background: radial-gradient(circle at center,
+      rgba(212, 89, 10, 0.42) 0%,
+      rgba(212, 89, 10, 0.16) 32%,
+      rgba(212, 89, 10, 0) 62%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(18,18,18,0.3) 0%, rgba(18,18,18,0) 30%, rgba(18,18,18,0.55) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero .wrap { position: relative; z-index: 2; }
+
+  .hero h1 {
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.9rem, 10vw, 6.4rem);
+    line-height: 0.98;
+    letter-spacing: 0.005em;
+    margin-bottom: 28px;
+    /* heated-metal gradient fill */
+    background: linear-gradient(168deg, var(--light-ember) 0%, #F0A15A 34%, var(--ember) 72%, #A8410A 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--ember);
+    text-shadow: 0 0 60px rgba(212, 89, 10, 0.18);
+  }
+  .hero h1 .line { display: block; }
+
+  .hero .hook {
+    font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+    font-weight: 400;
+    color: var(--offwhite);
+    max-width: 30ch;
+    line-height: 1.5;
+  }
+  .hero .hook strong { font-weight: 600; color: #fff; }
+
+  .scrollcue {
+    position: absolute;
+    bottom: 34px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .scrollcue .bar {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--ember), transparent);
+    animation: cue 2.4s ease-in-out infinite;
+  }
+  @keyframes cue {
+    0%, 100% { opacity: 0.35; transform: scaleY(0.7); transform-origin: top; }
+    50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  }
+
+  /* ---------- Story ---------- */
+  section { position: relative; }
+
+  .story {
+    padding: clamp(80px, 12vw, 140px) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .story .lead {
+    font-family: 'Russo One', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    color: var(--offwhite);
+    margin-bottom: 36px;
+  }
+  .story .lead .accent { color: var(--ember); }
+  .story p {
+    font-size: clamp(1.05rem, 2vw, 1.18rem);
+    color: #D8D2CB;
+    max-width: 60ch;
+    margin-bottom: 22px;
+  }
+  .story p.sign {
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.15rem;
+    color: var(--offwhite);
+    letter-spacing: 0.04em;
+    margin-top: 34px;
+  }
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 48px;
+    margin: 44px 0 4px;
+    padding-top: 34px;
+    border-top: 1px solid var(--hairline);
+  }
+  .stat .num {
+    font-family: 'Russo One', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--ember);
+    line-height: 1;
+  }
+  .stat .lbl {
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ---------- Email (the glowing panel) ---------- */
+  .signup {
+    background: linear-gradient(160deg, var(--light-ember) 0%, #F9E8D6 100%);
+    color: var(--forge);
+    padding: clamp(64px, 10vw, 110px) 0;
+    position: relative;
+  }
+  .signup::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--ember) 0%, var(--ember-bright) 50%, var(--ember) 100%);
+  }
+  .signup .eyebrow { color: var(--ember); }
+  .signup .eyebrow::before { background: var(--ember); }
+  .signup h2 {
+    font-family: 'Russo One', sans-serif;
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    line-height: 1.02;
+    color: var(--forge);
+    margin-bottom: 20px;
+  }
+  .signup .sub {
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    color: #3A342E;
+    max-width: 48ch;
+    margin-bottom: 38px;
+  }
+  .form-slot {
+    background: #fff;
+    border: 1px solid rgba(26,26,26,0.1);
+    border-radius: 4px;
+    padding: 28px;
+    max-width: 560px;
+    box-shadow: 0 18px 50px -24px rgba(26,26,26,0.35);
+  }
+  .form-slot .fallback-note {
+    font-size: 0.9rem;
+    color: #6B655E;
+    margin-top: 4px;
+  }
+  .privacy {
+    font-size: 0.85rem;
+    color: #6B655E;
+    margin-top: 20px;
+    max-width: 48ch;
+  }
+
+  /* ---------- Social ---------- */
+  .social {
+    padding: clamp(72px, 11vw, 120px) 0;
+    background: var(--forge-deep);
+    border-top: 1px solid var(--hairline);
+  }
+  .social h2 {
+    font-family: 'Russo One', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--offwhite);
+    margin-bottom: 12px;
+  }
+  .social .sub { color: var(--muted); margin-bottom: 40px; max-width: 46ch; }
+  .links { display: flex; flex-wrap: wrap; gap: 16px; }
+  .links a {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 22px 24px;
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--offwhite);
+    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  }
+  .links a:hover, .links a:focus-visible {
+    border-color: var(--ember);
+    background: rgba(212, 89, 10, 0.06);
+    transform: translateY(-3px);
+  }
+  .links .platform {
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+  }
+  .links .handle { font-size: 0.92rem; color: var(--muted); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--forge-deep);
+    padding: 54px 0 60px;
+    border-top: 1px solid var(--hairline);
+    text-align: center;
+  }
+  footer .tag {
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.16em;
+    color: var(--offwhite);
+    margin-bottom: 10px;
+  }
+  footer .tag .dot { color: var(--ember); }
+  footer .fine { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.04em; }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .hero h1, .hero .hook { opacity: 0; animation: rise 1s ease forwards; }
+  .hero .hook { animation-delay: 0.25s; }
+  @keyframes rise { to { opacity: 1; transform: none; } from { transform: translateY(22px); } }
+
+  a:focus-visible, .links a:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    .topbar .nav-note { display: none; }
+    .stats { gap: 24px 36px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero h1, .hero .hook { opacity: 1; animation: none; }
+    .scrollcue .bar { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <a href="#top" class="wordmark">REFORGED<span class="dot">.</span></a>
+      <span class="nav-note">Fort Bend County, TX</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="wrap">
+      <h1>
+        <span class="line">Emerge</span>
+        <span class="line">Reforged.</span>
+      </h1>
+      <p class="hook">Six years ago I weighed 356 pounds. <strong>This is what came after</strong> — and who it's for.</p>
+    </div>
+    <div class="scrollcue" aria-hidden="true">
+      <span>Read</span>
+      <span class="bar"></span>
+    </div>
+  </header>
+
+  <!-- STORY -->
+  <section class="story">
+    <div class="wrap reveal">
+      <span class="eyebrow">The Start</span>
+      <p class="lead">I'm not a coach who's always been fit. I started exactly where a lot of people are <span class="accent">afraid to start.</span></p>
+      <p>I've lost 146 pounds — not in a challenge, not for a photo. Slowly and stubbornly, one decision at a time. Along the way I taught myself to run; I'm closing in on two years of it now, every mile tracked. I learned to lift. I'm still going, still chasing the last stretch toward my own goal.</p>
+      <p>Too heavy, too self-conscious, sure that a gym was a place for other people — I know that feeling because I lived in it. Reforged is for anyone who's ever felt that way. No hype. No shortcuts. Just what actually worked, from someone who had to figure it out from the bottom.</p>
+      <p class="sign">— Justin</p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="num">146 lbs</div>
+          <div class="lbl">Lost, and counting</div>
+        </div>
+        <div class="stat">
+          <div class="num">~2 yrs</div>
+          <div class="lbl">Of tracked running</div>
+        </div>
+        <div class="stat">
+          <div class="num">Day 1</div>
+          <div class="lbl">Is where everyone starts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL SIGNUP -->
+  <section class="signup" id="join">
+    <div class="wrap reveal">
+      <span class="eyebrow">The List</span>
+      <h2>Start where you are.</h2>
+      <p class="sub">I send honest breakdowns of how I train and run, what I got wrong, and the things nobody tells beginners. Take what helps. Leave the rest.</p>
+      <div class="form-slot">
+        <!-- Kit (ConvertKit) embedded form -->
+        <script async data-uid="e288977a75" src="https://reforgedfit.kit.com/e288977a75/index.js"></script>
+        <noscript><p class="fallback-note">Enable JavaScript to sign up, or find the signup link in my Instagram bio.</p></noscript>
+      </div>
+      <p class="privacy">No spam. Unsubscribe anytime. This is just me, writing to you directly.</p>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section class="social">
+    <div class="wrap reveal">
+      <span class="eyebrow">The Day-to-Day</span>
+      <h2>Follow the work in progress.</h2>
+      <p class="sub">The runs, the lifts, the honest updates — as they happen.</p>
+      <div class="links">
+        <a href="https://instagram.com/reforgedfit" target="_blank" rel="noopener">
+          <span class="platform">Instagram</span>
+          <span class="handle">@reforgedfit</span>
+        </a>
+        <a href="https://youtube.com/@reforgedfit" target="_blank" rel="noopener">
+          <span class="platform">YouTube</span>
+          <span class="handle">Reforged</span>
+        </a>
+        <a href="https://facebook.com/reforgedfitnesstx" target="_blank" rel="noopener">
+          <span class="platform">Facebook</span>
+          <span class="handle">@reforgedfitnesstx</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="tag">EMERGE REFORGED<span class="dot">.</span></div>
+      <div class="fine">Reforged &middot; Fort Bend County, Texas</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveals (respects reduced-motion via CSS)
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
