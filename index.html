@@ -95,21 +95,19 @@
     min-height: 100vh;
     min-height: 100svh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     overflow: hidden;
-    padding: 120px 0 80px;
+    padding: 140px 0 128px;
   }
   /* ember rising from bottom-left, like a forge fire */
   .hero::before {
     content: "";
     position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 80vw;
-    height: 90vh;
-    background: radial-gradient(circle at center,
-      rgba(212, 89, 10, 0.42) 0%,
-      rgba(212, 89, 10, 0.16) 32%,
+    inset: 0;
+    background: radial-gradient(130% 85% at 12% 108%,
+      rgba(212, 89, 10, 0.40) 0%,
+      rgba(212, 89, 10, 0.16) 26%,
+      rgba(212, 89, 10, 0.04) 46%,
       rgba(212, 89, 10, 0) 62%);
     pointer-events: none;
     z-index: 0;
@@ -411,7 +409,7 @@
       <p class="sub">I send honest breakdowns of how I train and run, what I got wrong, and the things nobody tells beginners. Take what helps. Leave the rest.</p>
       <div class="form-slot">
         <!-- Kit (ConvertKit) embedded form -->
-        <script async data-uid="e288977a75" src="https://reforgedfit.kit.com/e288977a75/index.js"></script>
+        <script async data-uid="af923f69cc" src="https://reforgedfit.kit.com/af923f69cc/index.js"></script>
         <noscript><p class="fallback-note">Enable JavaScript to sign up, or find the signup link in my Instagram bio.</p></noscript>
       </div>
       <p class="privacy">No spam. Unsubscribe anytime. This is just me, writing to you directly.</p>
